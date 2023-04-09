@@ -1,2 +1,3 @@
 # ladder-all
-A roblox game template for ladder type games. 
+
+A roblox game template for a ladder type game.
