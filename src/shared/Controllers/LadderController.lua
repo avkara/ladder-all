@@ -84,17 +84,17 @@ function LadderController:KnitInit()
 		rayParams.FilterDescendantsInstances = tempParam
 	end
 
-	Players.PlayerAdded:Connect(function(player)
-		player.CharacterAdded:Connect(addToFilter)
-		player.CharacterRemoving:Connect(removeFromFilter)
-	end)
+	local function hookCharacterEvents(player: Player)
+		addToFilter(player.Character or player.CharacterAdded:Wait())
 
-	for _, player in Players:GetChildren() do
 		player.CharacterAdded:Connect(addToFilter)
 		player.CharacterRemoving:Connect(removeFromFilter)
-		if player.Character then
-			addToFilter(player.Character)
-		end
+	end
+
+	Players.PlayerAdded:Connect(hookCharacterEvents)
+
+	for _, player in Players:GetPlayers() do
+		hookCharacterEvents(player)
 	end
 end
 

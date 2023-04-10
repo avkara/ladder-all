@@ -81,6 +81,7 @@ function LadderService:KnitInit()
 		}
 		ladders[player].ladder.Name = "Ladder" .. player.Name
 
+		addToFilter(player.Character or player.CharacterAdded:Wait())
 		player.CharacterAdded:Connect(addToFilter)
 		player.CharacterRemoving:Connect(removeFromFilter)
 	end)
@@ -92,7 +93,7 @@ function LadderService:KnitInit()
 		ladders[player] = nil
 	end)
 
-	for _, player in ipairs(Players:GetChildren()) do
+	for _, player in Players:GetPlayers() do
 		ladders[player] = {
 			ladder = ReplicatedStorage.Ladder:Clone(),
 			ladderSpawned = false,
