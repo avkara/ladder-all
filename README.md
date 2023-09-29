@@ -1,3 +1,3 @@
 # ladder-all
 
-A roblox game template for a ladder type game.
+A roblox game template for creating a ladder type game, using the knit framework.
